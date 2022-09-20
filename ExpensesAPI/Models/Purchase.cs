@@ -11,7 +11,7 @@ namespace ExpensesAPI.Models
         public string Сurrency { get; set; } = string.Empty;
         [JsonIgnore]
         public DateTime WasBought { get; set; }
-        public Section Section { get; set; }
+        public Section Sections { get; set; }
         public int SectionId { get; set; }
     }
 }
