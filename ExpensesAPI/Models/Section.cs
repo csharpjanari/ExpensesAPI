@@ -5,6 +5,7 @@
         [JsonIgnore]
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public List<Purchase> Purchases { get; set; }    
+        [JsonIgnore]
+        public ICollection<Purchase> Purchases { get; set; }    
     }
 }
