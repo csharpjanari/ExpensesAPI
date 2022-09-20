@@ -12,6 +12,6 @@ namespace ExpensesAPI.Models
         [JsonIgnore]
         public DateTime WasBought { get; set; }
         public Section Section { get; set; }
-        public Guid SectionId { get; set; }
+        public int SectionId { get; set; }
     }
 }
