@@ -2,8 +2,8 @@
 {
     public class SectionDto
     {
-        [JsonIgnore]
         public int Id { get; set; }
-        public string Name { get; set; }
+        [Required, MaxLength(20)]
+        public string Name { get; set; } = string.Empty;
     }
 }

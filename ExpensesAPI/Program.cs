@@ -3,6 +3,7 @@ global using System.ComponentModel.DataAnnotations;
 global using Microsoft.EntityFrameworkCore;
 global using ExpensesAPI.Models;
 global using ExpensesAPI.Data;
+global using ExpensesAPI.Dto;
 
 var builder = WebApplication.CreateBuilder(args);
 
