@@ -1,9 +1,7 @@
-﻿
-namespace ExpensesAPI.Models
+﻿namespace ExpensesAPI.Dto
 {
-    public class Purchase
+    public class PurchaseDto
     {
-        [Key]
         public int Id { get; set; }
         public string NameOfSection { get; set; } = string.Empty;
         [MaxLength(50)]
@@ -13,8 +11,6 @@ namespace ExpensesAPI.Models
         public string Сurrency { get; set; } = string.Empty;
         [JsonIgnore]
         public DateTime WasBought { get; set; }
-        [JsonIgnore]
-        public Section Sections { get; set; }
         [Required]
         public int SectionId { get; set; }
     }
