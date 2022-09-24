@@ -8,6 +8,7 @@ namespace ExpensesAPI.Models
         [JsonIgnore]
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public int HowMany { get; set; }
         public string Сurrency { get; set; } = string.Empty;
         [JsonIgnore]
         public DateTime WasBought { get; set; }
