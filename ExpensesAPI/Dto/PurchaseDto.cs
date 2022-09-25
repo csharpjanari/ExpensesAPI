@@ -9,7 +9,6 @@
         [Required]
         public int HowMany { get; set; }
         public string Сurrency { get; set; } = string.Empty;
-        [JsonIgnore]
         public DateTime WasBought { get; set; }
         [Required]
         public int SectionId { get; set; }
