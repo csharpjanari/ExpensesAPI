@@ -15,22 +15,13 @@ namespace ExpensesAPI.Controllers
             _logger = logger;
             _context = context;
         }
-        
-
-        [HttpGet("GetAll")]
-        public IActionResult GetAll()
-        {
-            if(_context.Purchases == null)
-            {
-                return NotFound("Purchases not created yet!");
-            }
-
-            _logger.LogInformation("GETTING PURCHASES");
-            return Ok(_context.Purchases);
-        }
+     
 
 
         [HttpGet("Get/{sectionId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get(int sectionId)
         {
             if(sectionId == 0)
@@ -52,7 +43,11 @@ namespace ExpensesAPI.Controllers
         }
 
 
+
         [HttpPost("Create/{sectionId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Create(int sectionId, PurchaseDto purchase)
         {
             if(sectionId == 0)
@@ -95,7 +90,11 @@ namespace ExpensesAPI.Controllers
         }
 
 
+
         [HttpPut("Update/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Update(int id, PurchaseDto purchase)
         {
             if(id == 0)
@@ -141,7 +140,11 @@ namespace ExpensesAPI.Controllers
         }
 
 
+
         [HttpDelete("Delete{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(int id)
         {
             if (id == 0)

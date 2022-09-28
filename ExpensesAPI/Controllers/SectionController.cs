@@ -17,6 +17,8 @@ namespace ExpensesAPI.Controllers
         }
 
         [HttpGet("Get")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get()
         {
             if (_context.Sections == null)
@@ -30,7 +32,11 @@ namespace ExpensesAPI.Controllers
         }
 
 
+        
         [HttpGet("Get/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetId(int id)
         {
             if (id == 0)
@@ -52,7 +58,11 @@ namespace ExpensesAPI.Controllers
         }
 
 
+
         [HttpPost("Create")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Create(SectionDto section)
         {
             var category = new Section
@@ -69,7 +79,11 @@ namespace ExpensesAPI.Controllers
         }
 
 
+
         [HttpPut("Update/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Update(int id, SectionDto section)
         {
             if(id == 0)
@@ -94,7 +108,12 @@ namespace ExpensesAPI.Controllers
             return Ok("Section is updated.");
         }
 
+
+
         [HttpDelete("Delete/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(int id)
         {
             if (id == 0)
