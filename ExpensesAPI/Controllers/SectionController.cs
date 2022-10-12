@@ -33,7 +33,7 @@ namespace ExpensesAPI.Controllers
 
 
         
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -80,7 +80,7 @@ namespace ExpensesAPI.Controllers
 
 
 
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -110,7 +110,7 @@ namespace ExpensesAPI.Controllers
 
 
 
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
