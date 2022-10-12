@@ -9,7 +9,7 @@ namespace ExpensesAPI.Models
         [MaxLength(50)]
         public string Description { get; set; } = string.Empty;
         [Required]
-        public int HowMany { get; set; }
+        public double HowMany { get; set; }
         public string Сurrency { get; set; } = string.Empty;
         public DateTime WasBought { get; set; }
         [JsonIgnore]
