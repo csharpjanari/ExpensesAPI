@@ -15,7 +15,33 @@ namespace ExpensesAPI.Controllers
             _logger = logger;
             _context = context;
         }
-     
+
+
+
+        [HttpGet("GetPurchase/{purchaseId:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult GetPurchase(int purchaseId)
+        {
+            if(purchaseId == 0)
+            {
+                _logger.LogError("ID == 0");
+                return BadRequest("Id can't 0!!!");
+            }
+
+            var purchase = _context.Purchases.FirstOrDefault(x => x.Id == purchaseId);
+
+            if(purchase == null)
+            {
+                _logger.LogError("PURCHASE == NULL");
+                return NotFound("Error 404");
+            }
+
+            _logger.LogInformation("GETTING PURCHASE...");
+            return Ok(purchase);
+        }
+
 
 
         [HttpGet("Get/{sectionId:int}")]
