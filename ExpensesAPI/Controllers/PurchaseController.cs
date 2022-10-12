@@ -44,7 +44,7 @@ namespace ExpensesAPI.Controllers
 
 
 
-        [HttpPost("Create/{sectionId}")]
+        [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
