@@ -4,6 +4,8 @@ global using Microsoft.EntityFrameworkCore;
 global using ExpensesAPI.Models;
 global using ExpensesAPI.Data;
 global using ExpensesAPI.Dto;
+global using Microsoft.AspNetCore.JsonPatch;
+global using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 

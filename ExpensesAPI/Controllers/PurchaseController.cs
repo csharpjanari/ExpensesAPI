@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesAPI.Controllers
@@ -163,6 +164,59 @@ namespace ExpensesAPI.Controllers
 
             _logger.LogInformation("PURCHASE IS UPDATED!");
             return Ok("Purchase is updated.");
+        }
+
+
+
+        [HttpPatch("UpdatePartial/{purchaseId:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(200)]
+        public IActionResult UpdatePartial(int purchaseId, [FromBody] JsonPatchDocument<Purchase> patchDTO)
+        {
+            if(purchaseId == 0)
+            {
+                _logger.LogError("PURCHASE == 0");
+                return BadRequest("Purchase can't be 0");
+            }
+
+            var purchase = _context.Purchases.FirstOrDefault(x => x.Id == purchaseId);
+
+            if(purchase == null)
+            {
+                _logger.LogError("PURCHASE == NULL");
+                return NotFound("Error 404");
+            }
+
+            patchDTO.ApplyTo(purchase, ModelState);
+
+            if(!ModelState.IsValid)
+            {
+                _logger.LogError("ERROR - " + ModelState);
+                return BadRequest(ModelState);
+            }
+
+            if (purchase.Сurrency == "USD" ||
+               purchase.Сurrency == "EUR" ||
+               purchase.Сurrency == "Tenge" ||
+               purchase.Сurrency == "Ruble" ||
+               purchase.Сurrency == "Manat" ||
+               purchase.Сurrency == "Ien" ||
+               purchase.Сurrency == "Funt")
+            {
+                _logger.LogInformation("Currency is good.");
+            }
+            else
+            {
+                _logger.LogError("Currency != good");
+                return BadRequest("Currsency can be (USD, EUR, Tenge, Ruble, Manat, Ien, Funt!!!");
+            }
+
+            _context.Update(purchase);
+            _context.SaveChanges();
+
+            _logger.LogInformation("Saving Changes...");
+            return Ok("Changes has been saved!");
         }
 
 
