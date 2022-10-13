@@ -1,7 +1,5 @@
 ﻿
 
-using Microsoft.AspNetCore.Mvc;
-
 namespace ExpensesAPI.Controllers
 {
     [Route("api/Purchase")]

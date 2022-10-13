@@ -6,6 +6,8 @@ global using ExpensesAPI.Data;
 global using ExpensesAPI.Dto;
 global using Microsoft.AspNetCore.JsonPatch;
 global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.EntityFrameworkCore.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
