@@ -109,6 +109,43 @@ namespace ExpensesAPI.Controllers
 
 
 
+        [HttpPatch("UpdatePartial/{id:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult UpdatePartial(int id, JsonPatchDocument<Section> patchDTO)
+        {
+            if(id == 0)
+            {
+                _logger.LogError("ID == 0");
+                return BadRequest("Id cant't be 0.");
+            }
+
+            var section = _context.Sections.FirstOrDefault(x => x.Id == id);
+
+            if(section == null)
+            {
+                _logger.LogError("ERROR 404...");
+                return NotFound("Error 404");
+            }
+
+            patchDTO.ApplyTo(section, ModelState);
+
+            if(!ModelState.IsValid)
+            {
+                _logger.LogError("ERROR - " + ModelState);
+                return BadRequest(ModelState);
+            }
+
+            _context.Update(section);
+            _context.SaveChanges();
+
+            _logger.LogInformation("Changes has been saved");
+            return Ok("Changes has been saved!");
+        }
+
+
+
         [HttpDelete("Delete/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
